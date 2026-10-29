@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Uma coisinha pra você ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(circle at center, #3b001c, #16000b 60%, #080004);
+
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* =========================
+           TELA INICIAL
+        ========================= */
+
+        #inicio {
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            z-index: 10;
+
+            animation: aparecer 1.5s ease;
+        }
+
+        #inicio .mini-coracao {
+            font-size: 55px;
+            color: #ff3366;
+
+            margin-bottom: 25px;
+
+            animation: pulsar 1.3s infinite;
+
+            text-shadow: 0 0 25px #ff1744;
+        }
+
+        #inicio h1 {
+            font-size: 29px;
+            margin-bottom: 15px;
+        }
+
+        #inicio p {
+            color: #ffb6c1;
+            font-size: 17px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           BOTÃO
+        ========================= */
+
+        button {
+            border: none;
+
+            background: linear-gradient(
+                135deg,
+                #ff1744,
+                #ff4081
+            );
+
+            color: white;
+
+            padding: 15px 32px;
+
+            border-radius: 30px;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 25px rgba(255, 23, 68, 0.6);
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+
+            box-shadow:
+                0 0 40px rgba(255, 23, 68, 0.9);
+        }
+
+        /* =========================
+           SURPRESA
+        ========================= */
+
+        #surpresa {
+            display: none;
+
+            width: 90%;
+            max-width: 650px;
+
+            text-align: center;
+
+            z-index: 10;
+        }
+
+        .coracao-principal {
+            font-size: 90px;
+            color: #ff1744;
+
+            text-shadow:
+                0 0 15px #ff1744,
+                0 0 40px #ff1744;
+
+            animation: pulsar 1s infinite;
+        }
+
+        #titulo {
+            min-height: 50px;
+
+            margin-top: 15px;
+
+            font-size: 28px;
+
+            color: white;
+        }
+
+        /* =========================
+           CARTA
+        ========================= */
+
+        #carta {
+            opacity: 0;
+
+            margin-top: 25px;
+            padding: 25px;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            border: 1px solid rgba(255, 182, 193, 0.25);
+
+            border-radius: 20px;
+
+            backdrop-filter: blur(5px);
+
+            color: #ffd7df;
+
+            font-size: 17px;
+            line-height: 1.65;
+
+            transform: translateY(20px);
+
+            transition:
+                opacity 2s,
+                transform 2s;
+
+            box-shadow:
+                0 0 30px rgba(255, 23, 68, 0.12);
+        }
+
+        #carta.visivel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #final {
+            display: block;
+
+            margin-top: 20px;
+
+            color: white;
+
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           CORAÇÕES FLUTUANTES
+        ========================= */
+
+        .coracao {
+            position: fixed;
+
+            bottom: -50px;
+
+            pointer-events: none;
+
+            z-index: 1;
+
+            color: #ff1744;
+
+            text-shadow:
+                0 0 10px rgba(255, 23, 68, 0.8);
+
+            animation:
+                subir linear forwards;
+        }
+
+        /* =========================
+           ANIMAÇÕES
+        ========================= */
+
+        @keyframes pulsar {
+
+            0% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.15);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.12);
+            }
+
+            60% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes subir {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translateY(-115vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            #inicio h1 {
+                font-size: 25px;
+            }
+
+            #titulo {
+                font-size: 24px;
+            }
+
+            .coracao-principal {
+                font-size: 75px;
+            }
+
+            #carta {
+                padding: 20px;
+
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================
+         TELA INICIAL
+    ========================= -->
+
+    <div id="inicio">
+
+        <div class="mini-coracao">
+            ♥
+        </div>
+
+        <h1>
+            Fiz uma coisinha pra você...
+        </h1>
+
+        <p>
+            Nada complicado.<br>
+            Só algo que eu queria que você soubesse.
+        </p>
+
+        <button onclick="abrirSurpresa()">
+            Abrir ❤️
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         SURPRESA
+    ========================= -->
+
+    <div id="surpresa">
+
+        <div class="coracao-principal">
+            ♥
+        </div>
+
+        <h1 id="titulo"></h1>
+
+
+        <div id="carta">
+
+            Você já sabe o que eu sinto por você,
+            então isso não é uma tentativa de
+            te convencer de nada.
+
+            <br><br>
+
+            Só fiz isso porque, independente
+            de você sentir o mesmo ou não,
+            você é alguém muito importante pra mim.
+
+            <br><br>
+
+            Eu gosto de você além da amizade.
+            Isso não mudou.
+
+            <br><br>
+
+            Mas também respeito o seu espaço
+            e o que você sente.
+
+            <br><br>
+
+            Então você não precisa responder nada.
+
+            <br><br>
+
+            Eu só queria encontrar um jeito
+            diferente de te lembrar de uma coisa:
+
+            <span id="final">
+                Você é importante pra mim. ❤️
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           ABRIR A SURPRESA
+        ========================= */
+
+        function abrirSurpresa() {
+
+            document.getElementById("inicio")
+                .style.display = "none";
+
+
+            document.getElementById("surpresa")
+                .style.display = "block";
+
+
+            // Começa os corações
+            iniciarCoracoes();
+
+
+            // Começa a escrever
+            setTimeout(
+                escreverTitulo,
+                500
+            );
+        }
+
+
+        /* =========================
+           TEXTO SENDO DIGITADO
+        ========================= */
+
+        const texto =
+            "Você é importante pra mim ❤️";
+
+
+        let indice = 0;
+
+
+        function escreverTitulo() {
+
+            const titulo =
+                document.getElementById("titulo");
+
+
+            if (indice < texto.length) {
+
+                titulo.innerHTML +=
+                    texto.charAt(indice);
+
+
+                indice++;
+
+
+                setTimeout(
+                    escreverTitulo,
+                    80
+                );
+
+            } else {
+
+                // Espera um pouco e mostra a carta
+                setTimeout(() => {
+
+                    document
+                        .getElementById("carta")
+                        .classList.add("visivel");
+
+                }, 700);
+            }
+        }
+
+
+        /* =========================
+           CORAÇÕES
+        ========================= */
+
+        function criarCoracao() {
+
+            const coracao =
+                document.createElement("div");
+
+
+            coracao.classList.add("coracao");
+
+
+            // Alguns tipos de coração
+            const tipos = [
+                "♥",
+                "❤",
+                "♡"
+            ];
+
+
+            coracao.innerHTML =
+                tipos[
+                    Math.floor(
+                        Math.random() *
+                        tipos.length
+                    )
+                ];
+
+
+            // Posição aleatória
+            coracao.style.left =
+                Math.random() * 100 + "vw";
+
+
+            // Tamanho aleatório
+            coracao.style.fontSize =
+                Math.random() * 25 + 12 + "px";
+
+
+            // Duração aleatória
+            coracao.style.animationDuration =
+                Math.random() * 3 + 4 + "s";
+
+
+            // Transparência diferente
+            coracao.style.opacity =
+                Math.random() * 0.5 + 0.5;
+
+
+            document.body.appendChild(
+                coracao
+            );
+
+
+            // Apaga depois
+            setTimeout(() => {
+
+                coracao.remove();
+
+            }, 7500);
+        }
+
+
+        function iniciarCoracoes() {
+
+            // Cria alguns imediatamente
+            for (let i = 0; i < 12; i++) {
+
+                setTimeout(
+                    criarCoracao,
+                    i * 100
+                );
+            }
+
+
+            // Continua criando
+            setInterval(
+                criarCoracao,
+                300
+            );
+        }
+
+    </script>
+
+</body>
+</html>
